@@ -3,7 +3,7 @@ use {
     wit_parser::{
         Case, Docs, Field, Function, FunctionKind, Handle, InterfaceId, Record, Resolve, Result_,
         Results, Stability, Tuple, Type, TypeDef, TypeDefKind, TypeId, TypeOwner,
-        UnresolvedPackage, Variant, WorldId, WorldItem, WorldKey,
+        UnresolvedPackageGroup, Variant, WorldId, WorldItem, WorldKey,
     },
 };
 
@@ -550,8 +550,8 @@ fn transform_new(resolve: &Resolve, world: WorldId, poll_suffix: Option<&str>) -
         })
         .unwrap_or_else(|| {
             new_resolve
-                .push(
-                    UnresolvedPackage::parse(
+                .push_group(
+                    UnresolvedPackageGroup::parse(
                         Path::new("isyswasfa.wit"),
                         include_str!("../wit/deps/isyswasfa/isyswasfa.wit"),
                     )
@@ -589,8 +589,8 @@ fn transform_new(resolve: &Resolve, world: WorldId, poll_suffix: Option<&str>) -
             })
             .unwrap_or_else(|| {
                 new_resolve
-                    .push(
-                        UnresolvedPackage::parse(
+                    .push_group(
+                        UnresolvedPackageGroup::parse(
                             Path::new("poll.wit"),
                             include_str!("../wit/deps/isyswasfa-io/poll.wit"),
                         )
